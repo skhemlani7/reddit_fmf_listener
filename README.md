@@ -6,6 +6,7 @@ The script runs every time you turn on your computer and again once every hour a
 - Create a reddit account.
 - Go to https://www.reddit.com/prefs/apps and click "are you a developer? Create an app...".
 - Add in a name of your choosing, leave description and about url blank. Select script.
+    - Add your selected name to config.json with the key "app_name".
 - Type in http://www.google.com for redirect uri. Don't judge me.
     - Add secret to config.json with key "client_secret".
     - Add the id under the application's name to config.json with key "client_id".
