@@ -1,4 +1,6 @@
+#NEVER expose config
 config.json
+auth.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
