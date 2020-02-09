@@ -2,6 +2,12 @@
 Scrapes r/frugalmalefashion for deals within the past week filtered by item type and brand. 
 The script runs every time you turn on your computer and again once every hour after startup. 
 
+# Dependencies
+- PRAW (pip install praw)
+- urllib3
+- json
+- requests
+
 # OAuth 2 and connecting to Reddit API 
 - Create a reddit account.
 - Go to https://www.reddit.com/prefs/apps and click "are you a developer? Create an app...".

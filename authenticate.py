@@ -16,3 +16,6 @@ outF = open("auth.json", "w")
 outF.write(str(response.json()).replace("'", '"'))
 print(response.json())
 outF.close()
+
+#TODO: 
+#   Move all of this code into a function and have it return a json in generate.py
