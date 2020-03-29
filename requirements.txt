@@ -1,0 +1,2 @@
+praw
+win10toast

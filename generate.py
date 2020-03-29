@@ -1,33 +1,23 @@
-#TODO: Notifications
-#   https://towardsdatascience.com/how-to-make-windows-10-toast-notifications-with-python-fb3c27ae45b9
-#TODO: Run on startup
-#   https://www.quora.com/How-do-I-run-a-Python-script-on-a-startup-on-Windows
-#TODO: Use datetime to have script run once every hour after startup
-
-#TODO: Move sample json to README
-#Sample json file 
-#{
-#     'brands' : ['H&M', 'Uniqlo', 'Patagonia'],
-#     'clothing_type' : ['oxford shirt', 'chino']
-# }
-
 import json
 import praw
 
-def main():
+def parse_reddit():
     with open("config.json") as json_file:
-        with open("auth.json") as auth_file:
-            config = json.load(json_file)
-            auth = json.load(auth_file)
-            # print(config["client_id"])
+        config = json.load(json_file)
+        result = []
 
-            reddit = praw.Reddit(client_id=config["client_id"], client_secret=config["client_secret"],
-                            password=config["password"], user_agent=config["user_agent"],
-                            username=config["username"])
+        reddit = praw.Reddit(client_id=config["client_id"], client_secret=config["client_secret"],
+                        password=config["password"], user_agent=config["user_agent"],
+                        username=config["username"])
+        subreddit = reddit.subreddit('frugalmalefashion')
 
-            for submission in reddit.front.hot(limit=256):
-                print(submission.score)
-            # print(auth["access_token"])
+        for submission in subreddit.hot(limit=50):
+            if submission.stickied:
+                continue
+            for key in config['keys']:
+                if key in submission.title.lower() and submission.title not in result:
+                    result.append(submission.title)
+        return result
 
 if __name__ == "__main__":
-    main()
+    print(parse_reddit())
